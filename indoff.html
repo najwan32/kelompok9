@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora and Fauna of Borneo</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        *{
+            text-decoration: none;
+        }
+        a {
+            cursor: pointer;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.199);
+            padding-left: 20px; padding-right: 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .navdiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .navdiv li {
+            list-style: none; display: inline-block;
+        } 
+        .navdiv li a {
+            color: white;
+            font-size: 20px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .logo {
+            width: 125px;
+            height: auto;
+            flex-shrink: 0;
+            padding: 20px;
+        }
+        .searchbar {
+            width: 200px; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            outline: none; 
+            margin-left: 25px;
+        }
+        main {
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 50px;
+            text-align: center;
+            display: flex;
+            gap: 5px;
+            max-width: 100%; 
+            box-sizing: border-box; 
+            overflow: visible;
+        }
+        #image {
+            position: relative; 
+            width: 100%;
+            height: 65vh; 
+            z-index: 1;
+        }
+        #panoram {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        #image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4%; 
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+            pointer-events: none; 
+        }
+        .overlay-text {
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            color: white; 
+            text-align: center;
+            z-index: 20; 
+        }
+        .overlay-text h1 {
+            font-size: 4rem; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+        }
+        .overlay-text h1 a {
+            color: white;
+        }
+        .page {
+            outline: 2px solid transparent; 
+            background-color: rgba(0, 0, 0, 0.096); 
+            padding-top: 2px; padding-bottom: 2px;
+            padding-right: 20px; padding-left: 20px;
+            border-radius: 10px;
+        }
+        .page h1 {
+            background-color: green;
+            color: white;
+            padding: 10px; 
+            border-radius: 10px 10px 0 0; 
+            margin: -20px -20px 20px -20px; 
+
+        }
+        .sidebar {
+            flex: 0 0 200px; 
+            background-color: #f4f4f4; 
+            padding: 10px; 
+            border-radius: 10px;
+            height: 100%;
+            width: 10rem;
+            position: sticky;
+            top: 2rem;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            box-sizing: border-box; 
+        }
+        .sidebar h3 {
+            background-color: green;
+            color: white; 
+            padding: 10px; 
+            margin: -10px -10px 10px -10px; 
+            border-radius: 10px 10px 0 0; 
+        }
+        .sidebar a {
+            display: block; 
+            margin-bottom: 20px; 
+            color: rgb(0, 0, 0); 
+            text-decoration: none; 
+            text-align: left;
+            font-size:  large;
+            padding: 10px; 
+            border-radius: 5px; 
+            transition: background-color 0.3s ease; 
+        }
+        .sidebar a:hover {
+            background-color: #d0d0d0; 
+            color: #000; 
+        }
+        #bottomlink {
+            margin-bottom: 0px;
+        }
+        article {
+            flex: 1; 
+            padding: 10px; 
+            box-sizing: border-box; 
+            max-width: calc(100% - 200px); 
+        }
+
+        .info {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            align-items: flex-start; 
+        }
+        .no1 {
+            overflow: hidden; 
+            margin-bottom: 20px; 
+        }
+        .text {
+            float: left; 
+            width: calc(100% - 220px); 
+            box-sizing: border-box; 
+            margin-right: 20px; 
+            text-align: left;
+        }
+
+        .image {
+            float: right; 
+            width: 200px; 
+            box-sizing: border-box; 
+        }
+
+        .image img {
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar">
+            <div class="navdiv">
+                <img class="logo" src="Images/output-onlinepngtools (1).png">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Contacts</a></li>
+                    <li><a href="">Help</a></li>
+                    <li><input type="text" placeholder="Search..." class="searchbar"></li>
+                    <li><a href="indologin.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="image">
+            <img id="panoram" src="Images/592993 - Copy.jpg">
+            <div class="overlay-text">
+                <h1><a href="indokalim.html">Explore Kalimantan</a></h1>
+            </div>
+        </div>
+    </div>
+    <main>
+        <aside class="sidebar">
+            <h3>DAFTAR ISI</h3>
+            <a href="#n1">Rafflesia</a>
+            <a href="#n2">Meranti</a>
+            <a href="#n3">Anggrek Hitam</a>
+            <a href="#n4">Orangutan</a>
+            <a href="#n5">Gajah Kerdil</a>
+            <a id="bottomlink" href="#n6">Bekantan</a>
+        </aside>
+        <article>
+            <div class="page">
+                <h1>Tumbuhan dan Hewan Eksotis Kalimantan<br>Flora dan Fauna Kalimantan</h1>
+                <div class="info">
+                    <div id="n1">
+                        <div class="text">
+                            <h3>Rafflesia arnoldii</h3>
+                            <p>Dikenal sebagai penghasil bunga tunggal terbesar di dunia. Merupakan tumbuhan parasit dengan bau khas mirip daging busuk sehingga menarik penyerbuk seperti lalat bangkai.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/file_2024-08-27_06.57.17[1].png">
+                        </div>
+                    </div>
+
+                    <div id="n2">
+                        <div class="text">
+                            <h3>Meranti</h3>
+                            <p>Meranti merupakan salah satu jenis pohon yang penting dalam industri perkayuan. Kayu Meranti dimanfaatkan untuk berbagai keperluan, seperti pembuatan furnitur dan bahan bangunan. Spesies ini tumbuh subur di hutan Kalimantan.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/ff2.png">
+                        </div>
+                    </div>
+
+                    <div id="n3">
+                        <div class="text">
+                            <h3>Anggrek Hitam</h3>
+                            <p>Anggrek hitam merupakan salah satu spesies anggrek terkenal yang berasal dari Kalimantan. Bunga ini memiliki ciri khas yang unik yaitu memiliki bibir hitam pada mekarnya sehingga sangat disukai oleh para kolektor tanaman hias.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/ff3.png">
+                        </div>
+                    </div>
+
+                    <div id="n4">
+                        <div class="text">
+                            <h3>Orangutan (Pongo pygmaeus)</h3>
+                            <p>Salah satu kera besar, terancam punah, dan berasal dari hutan hujan Kalimantan. Mereka dikenal karena kecerdasannya dan bulu khas berwarna coklat kemerahan.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/ff4.png">
+                        </div>
+                    </div>
+
+                    <div id="n5">
+                        <div class="text">
+                            <h3>Gajah Kerdil Kalimantan (Elephas maximus borneensis)</h3>
+                            <p>Subspesies gajah Asia yang lebih kecil, dikenal karena ciri-ciri uniknya, seperti ukurannya yang lebih kecil dan telinga yang lebih besar. Mereka ditemukan di hutan dataran rendah Kalimantan.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/ff5.png">
+                        </div>
+                    </div>
+
+                    <div id="n6">
+                        <div class="text">
+                            <h3>Bekantan (Nasalis larvatus)</h3>
+                            <p> Dikenal karena hidungnya yang besar dan khas, monyet ini berasal dari hutan bakau dan habitat sungai di Kalimantan. Ia juga dikenal karena perilaku sosialnya dan perutnya yang besar, yang membantu mencerna makanannya.</p>
+                        </div>
+                        <div class="image">
+                            <img src="Images/ff6.png">
+                        </div>
+                    </div>
+                </div>
+        </article>
+    </main>
+</body>
+</html>
